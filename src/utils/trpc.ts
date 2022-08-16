@@ -5,6 +5,15 @@ import type { AppRouter } from "../server/router";
 
 export const trpc = createReactQueryHooks<AppRouter>();
 
+export const {
+  useQuery,
+  useMutation,
+  useContext,
+  useInfiniteQuery,
+  useDehydratedState,
+  useSubscription,
+} = trpc;
+
 /**
  * This is a helper method to infer the output of a query resolver
  * @example type HelloOutput = inferQueryOutput<'hello'>
