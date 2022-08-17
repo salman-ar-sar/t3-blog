@@ -56,13 +56,13 @@ const Home: NextPage = () => {
               </h3>
             )}
           </Skeleton>
-          <div className="flex items-center justify-center gap-4 my-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 my-6 p-4">
             {posts ? (
               <>
                 {posts.map(({ id, title }) => (
                   <Link key={id} href={`/posts/${id}`} passHref>
                     <Button component="a" size="lg" variant="outline">
-                      <span className="text-2xl">{title}</span>
+                      <span className="text-2xl truncate">{title}</span>
                     </Button>
                   </Link>
                 ))}
