@@ -20,7 +20,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
-        <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700 dark:text-gray-200">
+        <h1 className="text-5xl md:text-[5rem] leading-normal text-center font-extrabold text-gray-700 dark:text-gray-200">
           Welcome to <span className="text-purple-300">T3 Blog</span>
           {session && session.user && (
             <span>
@@ -31,25 +31,10 @@ const Home: NextPage = () => {
             </span>
           )}
         </h1>
-        <h2 className="text-4xl md:text-[4rem] leading-normal font-bold text-amber-700 dark:text-amber-200">
+        <h2 className="text-4xl md:text-[4rem] leading-normal font-bold mb-6 text-amber-700 dark:text-amber-200">
           Posts
         </h2>
         <div className="flex flex-col items-center justify-center w-full">
-          <div className="flex items-center justify-center gap-4 my-6">
-            {posts ? (
-              <>
-                {posts.map(({ id, title }) => (
-                  <Link key={id} href={`/posts/${id}`} passHref>
-                    <Button component="a" size="lg" variant="outline">
-                      <span className="text-2xl">{title}</span>
-                    </Button>
-                  </Link>
-                ))}
-              </>
-            ) : (
-              <Loader variant="bars" />
-            )}
-          </div>
           <Skeleton
             visible={status === "loading"}
             className="!w-auto flex justify-center items-center"
@@ -71,6 +56,21 @@ const Home: NextPage = () => {
               </h3>
             )}
           </Skeleton>
+          <div className="flex items-center justify-center gap-4 my-6">
+            {posts ? (
+              <>
+                {posts.map(({ id, title }) => (
+                  <Link key={id} href={`/posts/${id}`} passHref>
+                    <Button component="a" size="lg" variant="outline">
+                      <span className="text-2xl">{title}</span>
+                    </Button>
+                  </Link>
+                ))}
+              </>
+            ) : (
+              <Loader variant="bars" />
+            )}
+          </div>
         </div>
       </main>
     </>
