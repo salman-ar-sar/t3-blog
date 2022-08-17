@@ -23,6 +23,7 @@ const MyApp: AppType = ({
   const title = "T3 Blog";
   const description = "A full stack blog web app created with T3 Stack";
   const imageMetaURL = "/favicon.ico";
+
   const myCache = createEmotionCache({ key: "mantine", prepend: false });
   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
   const toggleColorScheme = (value?: ColorScheme) =>
@@ -41,25 +42,6 @@ const MyApp: AppType = ({
         <meta name="theme-color" content="#000000" />
 
         <link rel="icon" href={imageMetaURL} />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png?v=2"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png?v=2"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png?v=2"
-        />
-        <link rel="manifest" href="/site.webmanifest?v=2" />
-        <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <meta name="apple-mobile-web-app-title" content={title} />
         <meta name="application-name" content={title} />
       </Head>
