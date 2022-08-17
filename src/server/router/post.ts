@@ -5,7 +5,9 @@ import { createRouter } from "./context";
 export const postRouter = createRouter()
   .query("getAll", {
     async resolve({ ctx }) {
-      return ctx.prisma.post.findMany();
+      return ctx.prisma.post.findMany({
+        select: { id: true, title: true },
+      });
     },
   })
   .query("getById", {
