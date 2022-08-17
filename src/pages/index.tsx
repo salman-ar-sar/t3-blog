@@ -21,10 +21,13 @@ const Home: NextPage = () => {
 
       <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
         <h1 className="text-5xl md:text-[4rem] xl:text-[5rem] leading-normal text-center font-extrabold text-gray-700 dark:text-gray-200">
-          Welcome to <span className="text-purple-300">T3 Blog</span>,
+          Welcome to <span className="text-purple-300">T3 Blog</span>
           {session && session.user && (
-            <span className="text-red-500 dark:text-red-400">
-              {` ${session.user.name || "User"}`}
+            <span>
+              ,
+              <span className="text-red-500 dark:text-red-400">
+                {` ${session.user.name || "User"}`}
+              </span>
             </span>
           )}
         </h1>
