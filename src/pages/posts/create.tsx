@@ -66,7 +66,8 @@ const CreatePost: NextPage = () => {
     createPost({
       title,
       content,
-      image: "https://picsum.photos/200/300",
+      // TODO: Add logic to upload image
+      image: "",
     });
   };
 
