@@ -37,28 +37,37 @@ const CreatePost: NextPage = () => {
     handleSubmit,
     formState: { isValid },
   } = useForm<CreatePostForm>({ mode: "onChange" });
-  const { invalidateQueries } = useContext();
-  const { mutate: createPost, isLoading } = useMutation("post.create");
+  const { invalidateQueries, cancelQuery, getQueryData, setQueryData } =
+    useContext();
+  const { mutate: createPost, isLoading } = useMutation("post.create", {
+    onMutate: async ({ title }) => {
+      await cancelQuery(["post.getAll"]);
+
+      const previousPosts = getQueryData(["post.getAll"]);
+      if (previousPosts) {
+        setQueryData(
+          ["post.getAll"],
+          [...previousPosts, { id: "to-fetch", title }]
+        );
+      }
+    },
+    onSettled: () => {
+      invalidateQueries(["post.getAll"]);
+      push("/");
+    },
+    onError: (error) => {
+      console.error("error", error);
+    },
+  });
 
   const onSubmit: SubmitHandler<CreatePostForm> = (data) => {
     const { title, content } = data;
 
-    createPost(
-      {
-        title,
-        content,
-        image: "https://picsum.photos/200/300",
-      },
-      {
-        onSuccess: () => {
-          invalidateQueries(["post.getAll"]);
-          push("/");
-        },
-        onError: (error) => {
-          console.error("error", error);
-        },
-      }
-    );
+    createPost({
+      title,
+      content,
+      image: "https://picsum.photos/200/300",
+    });
   };
 
   return (
