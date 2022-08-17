@@ -1,6 +1,11 @@
-import React from "react";
-
-import { ActionIcon, Button, ColorScheme, Skeleton } from "@mantine/core";
+import React, { useState } from "react";
+import {
+  ActionIcon,
+  Button,
+  ColorScheme,
+  Loader,
+  Skeleton,
+} from "@mantine/core";
 import {
   IconBrightnessDown,
   IconMoon,
@@ -20,6 +25,12 @@ const Layout: React.FC<LayoutProps> = (props) => {
   const isDark = colorScheme === "dark";
 
   const { data: session, status } = useSession();
+  const [loggingOut, setLoggingOut] = useState(false);
+
+  const handleLogout = () => {
+    setLoggingOut(true);
+    signOut().finally(() => setLoggingOut(false));
+  };
 
   return (
     <div className="w-full h-full">
@@ -27,12 +38,13 @@ const Layout: React.FC<LayoutProps> = (props) => {
         <Skeleton visible={status === "loading"}>
           {session ? (
             <Button
+              className="!w-[112px]"
               color="teal"
               variant="light"
-              rightIcon={<IconLogin />}
-              onClick={() => signOut()}
+              rightIcon={loggingOut ? null : <IconLogin />}
+              onClick={handleLogout}
             >
-              Logout
+              {loggingOut ? <Loader color="white" size={20} /> : "Logout"}
             </Button>
           ) : (
             <Button
