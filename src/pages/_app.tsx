@@ -1,12 +1,20 @@
+import { useState } from "react";
 import { withTRPC } from "@trpc/next";
 import superjson from "superjson";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  createEmotionCache,
+  MantineProvider,
+} from "@mantine/core";
 
 import type { AppPropsType, AppType } from "next/dist/shared/lib/utils";
 import type { AppRouter } from "../server/router";
 
 import "../styles/globals.css";
+import Layout from "../components/Layout";
 
 const MyApp: AppType = ({
   Component,
@@ -15,6 +23,10 @@ const MyApp: AppType = ({
   const title = "T3 Blog";
   const description = "A full stack blog web app created with T3 Stack";
   const imageMetaURL = "/favicon.ico";
+  const myCache = createEmotionCache({ key: "mantine", prepend: false });
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   return (
     <SessionProvider session={session}>
@@ -51,8 +63,25 @@ const MyApp: AppType = ({
         <meta name="apple-mobile-web-app-title" content={title} />
         <meta name="application-name" content={title} />
       </Head>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      <Component {...pageProps} />
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ colorScheme }}
+          emotionCache={myCache}
+        >
+          <Layout
+            colorScheme={colorScheme}
+            toggleColorScheme={toggleColorScheme}
+          >
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+            <Component {...pageProps} />
+          </Layout>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </SessionProvider>
   );
 };
