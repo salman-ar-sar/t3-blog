@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import { Button, Loader, Modal, Textarea, TextInput } from "@mantine/core";
+import { Button, Loader, Textarea, TextInput } from "@mantine/core";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -8,6 +8,7 @@ import type { SubmitHandler } from "react-hook-form";
 import type { NextPage } from "next";
 
 import { useMutation, useContext } from "../../utils/trpc";
+import Modal from "../../components/Modal";
 
 interface CreatePostForm {
   title: string;
@@ -143,11 +144,6 @@ const CreatePost: NextPage = () => {
         onClose={handleModalClose}
         title="Secured Page"
         transition="fade"
-        transitionDuration={600}
-        transitionTimingFunction="ease"
-        overlayOpacity={0.55}
-        overlayBlur={3}
-        centered
       >
         <div className="flex flex-col gap-4">
           Hi, please login to create a post.
