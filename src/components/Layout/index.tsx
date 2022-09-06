@@ -14,6 +14,8 @@ import {
 } from "@tabler/icons";
 import { signIn, signOut, useSession } from "next-auth/react";
 
+import Modal from "../Modal";
+
 interface LayoutProps {
   children: React.ReactNode;
   colorScheme: ColorScheme;
@@ -26,10 +28,15 @@ const Layout: React.FC<LayoutProps> = (props) => {
 
   const { data: session, status } = useSession();
   const [loggingOut, setLoggingOut] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
     setLoggingOut(true);
     signOut().finally(() => setLoggingOut(false));
+  };
+
+  const handleLogoutButtonClick = () => {
+    setShowLogoutModal(true);
   };
 
   return (
@@ -42,7 +49,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
               color="teal"
               variant="light"
               rightIcon={loggingOut ? null : <IconLogin />}
-              onClick={handleLogout}
+              onClick={handleLogoutButtonClick}
             >
               {loggingOut ? <Loader color="white" size={20} /> : "Logout"}
             </Button>
@@ -67,6 +74,19 @@ const Layout: React.FC<LayoutProps> = (props) => {
         </ActionIcon>
       </div>
       {children}
+      <Modal
+        opened={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        title="Are you sure you want to logout?"
+        transition="fade"
+      >
+        <div className="flex flex-col gap-4">
+          Please press the button below to confirm logout.
+          <Button variant="light" onClick={handleLogout}>
+            {loggingOut ? <Loader color="white" size={20} /> : "Logout"}
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 };
