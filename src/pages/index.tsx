@@ -19,7 +19,7 @@ const Home: NextPage = () => {
         <title>T3 Blog - Home</title>
       </Head>
 
-      <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
+      <main className="container mx-auto flex flex-col items-center justify-center min-h-screen pt-12 md:pt-4 p-4">
         <h1 className="text-5xl md:text-[4rem] xl:text-[5rem] leading-normal text-center font-extrabold text-gray-700 dark:text-gray-200">
           Welcome to <span className="text-purple-300">T3 Blog</span>
           {session && session.user && (
