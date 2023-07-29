@@ -61,7 +61,13 @@ const Home: NextPage = () => {
               <>
                 {posts.map(({ id, title }) => (
                   <Link key={id} href={`/posts/${id}`} passHref>
-                    <Button component="a" size="lg" variant="outline">
+                    <Button
+                      component="a"
+                      size="lg"
+                      variant="outline"
+                      className="max-w-[16rem]"
+                      fullWidth
+                    >
                       <span className="text-2xl truncate">{title}</span>
                     </Button>
                   </Link>
