@@ -28,8 +28,13 @@ const MyApp: AppType<{ session: Session | null }> = ({
 
   const myCache = createEmotionCache({ key: "mantine", prepend: false });
   const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
-  const toggleColorScheme = (value?: ColorScheme) =>
+  const toggleColorScheme = (value?: ColorScheme) => {
+    if (colorScheme === "dark")
+      document.documentElement.classList.remove("dark");
+    else document.documentElement.classList.add("dark");
+
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+  };
 
   return (
     <SessionProvider session={session}>
