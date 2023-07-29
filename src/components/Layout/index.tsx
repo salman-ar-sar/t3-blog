@@ -45,6 +45,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
         <Skeleton visible={status === "loading"}>
           {session ? (
             <Button
+              aria-label="Logout"
               className="!w-[112px]"
               color="teal"
               variant="light"
@@ -55,6 +56,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
             </Button>
           ) : (
             <Button
+              aria-label="Login"
               color="teal"
               variant="light"
               rightIcon={<IconLayoutSidebarRightExpand />}
@@ -82,7 +84,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
       >
         <div className="flex flex-col gap-4">
           Please press the button below to confirm logout.
-          <Button variant="light" onClick={handleLogout}>
+          <Button aria-label="Logout" variant="light" onClick={handleLogout}>
             {loggingOut ? <Loader color="white" size={20} /> : "Logout"}
           </Button>
         </div>

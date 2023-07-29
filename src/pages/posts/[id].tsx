@@ -35,6 +35,7 @@ const Posts: NextPage = () => {
               {post.content}
             </div>
             <Button
+              aria-label="Go back"
               component="a"
               size="lg"
               leftIcon={<IconArrowNarrowLeft />}

@@ -128,6 +128,7 @@ const CreatePost: NextPage = () => {
           />
           <div>
             <Button
+              aria-label="Submit"
               type="submit"
               size="lg"
               variant="gradient"
@@ -147,7 +148,11 @@ const CreatePost: NextPage = () => {
       >
         <div className="flex flex-col gap-4">
           Hi, please login to create a post.
-          <Button variant="light" onClick={() => push("/api/auth/signin")}>
+          <Button
+            aria-label="Click here to login"
+            variant="light"
+            onClick={() => push("/api/auth/signin")}
+          >
             Click here to login
           </Button>
         </div>

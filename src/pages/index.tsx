@@ -43,6 +43,7 @@ const Home: NextPage = () => {
             {session ? (
               <Link href="/posts/create" passHref>
                 <Button
+                  aria-label="Create Post"
                   component="a"
                   size="lg"
                   rightIcon={<IconPencilPlus />}
@@ -63,6 +64,7 @@ const Home: NextPage = () => {
                 {posts.map(({ id, title }) => (
                   <Link key={id} href={`/posts/${id}`} passHref>
                     <Button
+                      aria-label={title}
                       component="a"
                       size="lg"
                       variant="outline"
