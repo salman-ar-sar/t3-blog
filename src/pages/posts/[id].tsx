@@ -20,18 +20,20 @@ const Posts: NextPage = () => {
       <main className="container mx-auto flex items-center justify-center min-h-screen p-4">
         {post ? (
           <div className="flex flex-col items-center justify-center gap-6">
-            <h2 className="text-5xl md:text-[4rem] leading-normal font-extrabold text-amber-300">
+            <h2 className="text-5xl md:text-[4rem] leading-normal font-extrabold text-amber-500 dark:text-amber-300">
               {post.title}
             </h2>
             <div className="w-full flex items-center justify-between gap-20">
-              <span className="text-2xl md:text-[2rem] leading-normal font-bold text-green-300">
+              <span className="text-2xl md:text-[2rem] leading-normal font-bold text-green-500 dark:text-green-300">
                 Created by: {post.author}
               </span>
-              <span className="text-xl md:text-[1.5rem] leading-normal font-bold text-blue-300">
+              <span className="text-xl md:text-[1.5rem] leading-normal font-bold text-blue-500 dark:text-blue-300">
                 Created on: {post.createdAt.toDateString()}
               </span>
             </div>
-            <div className="my-4 text-lg text-gray-300">{post.content}</div>
+            <div className="my-4 text-lg text-gray-500 dark:text-gray-300">
+              {post.content}
+            </div>
             <Button
               component="a"
               size="lg"
