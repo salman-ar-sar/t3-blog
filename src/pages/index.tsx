@@ -51,7 +51,7 @@ const Home: NextPage = () => {
                 </Button>
               </Link>
             ) : (
-              <h3 className="text-3xl md:text-[2rem] leading-normal font-bold text-blue-900 dark:text-blue-200">
+              <h3 className="text-3xl text-center md:text-[2rem] leading-normal font-bold text-blue-900 dark:text-blue-200">
                 Please log in to create posts!
               </h3>
             )}
