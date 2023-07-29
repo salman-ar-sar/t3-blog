@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { withTRPC } from "@trpc/next";
-import superjson from "superjson";
-import Head from "next/head";
-import { SessionProvider } from "next-auth/react";
+/* eslint-disable react/prop-types */
 import {
   ColorScheme,
   ColorSchemeProvider,
   createEmotionCache,
   MantineProvider,
 } from "@mantine/core";
+import { withTRPC } from "@trpc/next";
+import { SessionProvider } from "next-auth/react";
+import Head from "next/head";
+import { useState } from "react";
+import superjson from "superjson";
 
-import type { AppPropsType, AppType } from "next/dist/shared/lib/utils";
+import type { Session } from "next-auth";
+import { type AppType } from "next/app";
 import type { AppRouter } from "../server/router";
 
-import "../styles/globals.css";
 import Layout from "../components/Layout";
+import "../styles/globals.css";
 
-const MyApp: AppType = ({
+const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
-}: AppPropsType) => {
+}) => {
   const title = "T3 Blog";
   const description = "A full stack blog web app created with T3 Stack";
   const imageMetaURL = "/favicon.ico";
