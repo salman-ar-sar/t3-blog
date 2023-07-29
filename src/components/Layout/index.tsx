@@ -67,6 +67,7 @@ const Layout: React.FC<LayoutProps> = (props) => {
           )}
         </Skeleton>
         <ActionIcon
+          aria-label="Toggle Dark Mode"
           color="teal"
           variant="light"
           size="lg"
